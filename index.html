@@ -2,15 +2,18 @@
 
   <div style="width:90%; max-width:500px;">
     
-    <h1 style="text-align:center; letter-spacing:2px; margin-bottom:40px;">
+    <h1 style="text-align:center; letter-spacing:2px; margin-bottom:50px;">
       THE VAULT
     </h1>
 
-    <audio id="player" controls style="width:100%; margin-bottom:30px; filter:invert(1);">
-      <source id="source" src="https://www.dropbox.com/scl/fi/tq8yv8wz2383l1kznl1uv/BABY.wav?rlkey=oqq81ya65cfibqn1pxxge0v5a&raw=1">
+    <!-- PLAYER -->
+    <audio id="player" controls style="width:100%; margin-bottom:40px; filter:invert(1) brightness(0.9); border:none; outline:none;">
+      <source id="source" src="https://www.dropbox.com/scl/fi/tq8yv8wz2383l1kznl1uv/BABY.wav?raw=1">
     </audio>
 
+    <!-- TRACKLIST -->
     <div id="tracks">
+
       <div onclick="play(0)" class="track">01 — BABY</div>
       <div onclick="play(1)" class="track">02 — FLOWERS</div>
       <div onclick="play(2)" class="track">03 — SO FAR</div>
@@ -21,6 +24,7 @@
       <div onclick="play(7)" class="track">08 — MIRROR</div>
       <div onclick="play(8)" class="track">09 — ALIVE</div>
       <div onclick="play(9)" class="track">10 — BUGGIN (Feat. D3AD)</div>
+
     </div>
 
   </div>
@@ -28,29 +32,44 @@
 
 <style>
 .track {
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 18px 0;
+  margin-bottom: 8px; /* gives each track its own space */
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   cursor: pointer;
   font-size: 14px;
   letter-spacing: 1px;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
-.track:hover { opacity: 0.6; }
-.active { opacity: 0.4; }
+
+/* hover = subtle fade */
+.track:hover {
+  opacity: 0.6;
+}
+
+/* active track */
+.active {
+  opacity: 0.4;
+}
+
+/* remove ugly audio border (extra safety) */
+audio {
+  border: none !important;
+  outline: none !important;
+}
 </style>
 
 <script>
 const tracks = [
-"https://www.dropbox.com/scl/fi/tq8yv8wz2383l1kznl1uv/BABY.wav?rlkey=oqq81ya65cfibqn1pxxge0v5a&raw=1",
-"https://www.dropbox.com/scl/fi/1c4rzt6u2b1mi9oqreav0/FLOWERS.mp3?rlkey=zkx030fmm0cefartjbjq33k4f&raw=1",
-"https://www.dropbox.com/scl/fi/g3ajx05qgcqa9xbdk4hbk/SO-FAR.mp3?rlkey=t5t1n4nqhopxnzvbggx33ayke&raw=1",
-"https://www.dropbox.com/scl/fi/ett7asieozfojbg478kht/VALLEY.mp3?rlkey=jhwryc9ji7yrijs38dxi6mz7l&raw=1",
-"https://www.dropbox.com/scl/fi/7fmb1ayxhc4j8pimoawu6/IN-THE-MIDDLE.mp3?rlkey=j7yhxqxq8jrsueyh3xh90909z&raw=1",
-"https://www.dropbox.com/scl/fi/k50d04ly3sur1wb2nm2ut/INCISION.mp3?rlkey=p0kqh2s7py5rdala3rjxck6ll&raw=1",
-"https://www.dropbox.com/scl/fi/gxwl9oe97ahuondvxqzeb/NEVER-THERE.mp3?rlkey=bcf6azxcplsbtzjvl2ndc3mxh&raw=1",
-"https://www.dropbox.com/scl/fi/lrs8i6fynn15ba6yvo2y7/MIRROR.wav?rlkey=kocln9ntu4v14la3wuybolzkf&raw=1",
-"https://www.dropbox.com/scl/fi/ttfwcl721l9jhrwj6rvls/ALIVE.wav?rlkey=2vkar02ns0yjt5d0do8wsupbj&raw=1",
-"https://www.dropbox.com/scl/fi/vbj3in75r1202solwq2t6/BUGGIN-Feat.-D3AD.wav?rlkey=j3p979xnzepulbdx2kzseezlb&raw=1"
+"https://www.dropbox.com/scl/fi/tq8yv8wz2383l1kznl1uv/BABY.wav?raw=1",
+"https://www.dropbox.com/scl/fi/1c4rzt6u2b1mi9oqreav0/FLOWERS.mp3?raw=1",
+"https://www.dropbox.com/scl/fi/g3ajx05qgcqa9xbdk4hbk/SO-FAR.mp3?raw=1",
+"https://www.dropbox.com/scl/fi/ett7asieozfojbg478kht/VALLEY.mp3?raw=1",
+"https://www.dropbox.com/scl/fi/7fmb1ayxhc4j8pimoawu6/IN-THE-MIDDLE.mp3?raw=1",
+"https://www.dropbox.com/scl/fi/k50d04ly3sur1wb2nm2ut/INCISION.mp3?raw=1",
+"https://www.dropbox.com/scl/fi/gxwl9oe97ahuondvxqzeb/NEVER-THERE.mp3?raw=1",
+"https://www.dropbox.com/scl/fi/lrs8i6fynn15ba6yvo2y7/MIRROR.wav?raw=1",
+"https://www.dropbox.com/scl/fi/ttfwcl721l9jhrwj6rvls/ALIVE.wav?raw=1",
+"https://www.dropbox.com/scl/fi/vbj3in75r1202solwq2t6/BUGGIN-Feat.-D3AD.wav?raw=1"
 ];
 
 let current = 0;
